@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "fluentqa-models"
+version = "0.1.0"
+description = ""
+authors = ["fluentqa <KUZz8@example.com>"]
+packages =[
+    {from="src", include="fluentmodels"}
+]
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic-yaml = "^0.11.2"
+jmespath = "^1.0.1"
+deepdiff = "^6.3.0"
+pyexcel = "^0.7.0"
+openpyxl = "^3.1.2"
+dotty-dict = "^1.3.1"
+pyexcel-xlsx = "^0.6.0"
+inflection = "^0.5.1"
+PyYAML = "^6.0"
+pandas = "^2.0.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.3.2"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
