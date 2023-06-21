@@ -2,10 +2,6 @@
 combine jmespath,jsonpath and dictor
 - https://github.com/jmespath/jmespath.py
 """
-from typing import Any, List
-from typing import Dict
-from typing import Union
-
 import json
 
 

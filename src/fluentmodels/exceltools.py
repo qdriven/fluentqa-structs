@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from typing import Any
+import csv
+from typing import Any, List, Type
 
 from pathlib import Path
 
@@ -8,12 +9,12 @@ import pyexcel
 from openpyxl import load_workbook
 from pydantic import BaseModel
 
-__all__ = ["read_as_objects", "write_objects_to_file"]
+__all__ = ["read_excel_to_objects", "write_objects_to_excel", "write_objects_to_csv", "read_csv_to_objects"]
 
 from fluentmodels.models import BaseDataModel
 
 
-def read_as_objects(
+def read_excel_to_objects(
         excel_path: str | Path,
         model: type[BaseModel] = BaseModel,
         sheet_index: int = 0,
@@ -39,7 +40,7 @@ def read_as_objects(
     return objects
 
 
-def write_objects_to_file(objects: list[BaseModel | dict | BaseDataModel], excel_path: str):
+def write_objects_to_excel(objects: list[BaseModel | dict | BaseDataModel], excel_path: str):
     """
     write objects to excel or csv
     """
@@ -51,3 +52,40 @@ def write_objects_to_file(objects: list[BaseModel | dict | BaseDataModel], excel
         ).save_as(excel_path)
     else:
         raise NotImplementedError("Not Support Model type")
+
+
+def write_objects_to_csv(csv_path: str,
+                         data: List[BaseModel]
+                         ):
+    out_csv = Path(csv_path)
+
+    fields = list(data[0].__fields__)
+    with out_csv.open("w") as out_fp:
+        writer = csv.DictWriter(out_fp, fieldnames=fields)
+        writer.writeheader()
+        [writer.writerow(x.dict()) for x in data]
+
+
+def read_csv_to_objects(csv_path: str, model: Type[BaseModel], ignore_validate_errors=False):
+    with open(csv_path, newline='') as f:
+        reader = csv.reader(f, delimiter=':', quoting=csv.QUOTE_NONE)
+        index = 0
+        headers = []
+        objects = []
+        for row in reader:
+            if index == 0:
+                headers = row[0].split(",")
+            else:
+                try:
+                    item ={}
+                    for key,v in zip(headers,row[0].split(",")):
+                        if len(v)>0:
+                            item[key]=v
+                    objects.append(model.parse_obj(item))
+                except BaseException as e:
+                    if ignore_validate_errors:
+                        continue
+                    raise e
+            index += 1
+
+    return objects

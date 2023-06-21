@@ -43,8 +43,11 @@ class BaseDataModel(GenericDataModel):
     pass
 
 
-def parse_as(json_str: str, to_type: Union[GenericDataModel, BaseDataModel, BaseModel]):
-    return pydantic.parse_raw_as(to_type, json_str)
+def parse_as(json_or_dict: str | dict, to_type: Union[GenericDataModel, BaseDataModel, BaseModel]):
+    if isinstance(json_or_dict, str):
+        return pydantic.parse_raw_as(to_type, json_or_dict)
+    else:
+        return pydantic.parse_obj_as(to_type, json_or_dict)
 
 
 def to_json(obj: Union[GenericDataModel, BaseDataModel, BaseModel]):

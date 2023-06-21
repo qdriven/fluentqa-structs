@@ -22,6 +22,10 @@ def load_yaml(file_path: str) -> Any:
     return YamlGenericModel.parse_file(file_path).dict()
 
 
+def load_yaml_to_object(model: type[YamlGenericModel], file_path: str):
+    return model.parse_file(file_path)
+
+
 def to_yaml_file(file_path: str, data: Union[YamlGenericModel, Dict]):
     if isinstance(data, YamlGenericModel):
         yaml_str = data.yaml()

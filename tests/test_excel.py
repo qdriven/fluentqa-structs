@@ -4,7 +4,7 @@ from typing import Optional
 from pydantic import Field
 
 from fluentmodels import exceltools
-from fluentmodels.exceltools import read_as_objects
+from fluentmodels.exceltools import read_excel_to_objects, write_objects_to_csv, read_csv_to_objects
 from fluentmodels.models import BaseDataModel
 
 class UnitExcelModel(BaseDataModel):
@@ -17,10 +17,12 @@ class UnitExcelModel(BaseDataModel):
 
 
 def test_load_objects_from_excel():
-    result = read_as_objects("./unit_demo.xlsx", UnitExcelModel)
+    result = read_excel_to_objects("./unit_demo.xlsx", UnitExcelModel)
     print(result)
     print(type(result))
 
+    write_objects_to_csv("unit.csv",result)
+    read_csv_to_objects("unit.csv",UnitExcelModel)
 
 def test_write_excels():
     u = UnitExcelModel()
@@ -28,5 +30,5 @@ def test_write_excels():
     u.unit_group_name = "kg"
     u1 = UnitExcelModel(unit_name="test1", unit_group_name="group1")
     list_objects = [u, u1]
-    exceltools.write_objects_to_file(list_objects, "unit_demo.xlsx")
-    exceltools.write_objects_to_file(list_objects, "unit_demo.csv")
+    exceltools.write_objects_to_excel(list_objects, "unit_demo.xlsx")
+    exceltools.write_objects_to_excel(list_objects, "unit_demo.csv")
