@@ -6,8 +6,7 @@ import re
 import inflection
 import pydantic
 
-from pydantic import BaseModel
-from pydantic.generics import GenericModel
+from pydantic import ConfigDict, BaseModel
 
 T = TypeVar("T")  # Declare type variable
 
@@ -21,12 +20,7 @@ class CamelModel(BaseModel):
     def __init__(self, **kwargs):
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
         super().__init__(**kwargs)
-
-    class Config:
-        arbitrary_types_allowed = True
-        alias_generator = to_camel
-        allow_population_by_field_name = True
-        use_enum_values = True
+    model_config = ConfigDict(arbitrary_types_allowed=True, alias_generator=to_camel, populate_by_name=True, use_enum_values=True)
 
     def to_json(self, by_alias=True):
         return self.json(by_alias=by_alias, exclude_none=True)
@@ -35,7 +29,7 @@ class CamelModel(BaseModel):
         return self.dict(by_alias=by_alias, exclude_none=True)
 
 
-class GenericDataModel(CamelModel, GenericModel):
+class GenericDataModel(CamelModel, BaseModel):
     pass
 
 

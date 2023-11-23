@@ -3,9 +3,10 @@ from typing import Optional
 
 from pydantic import Field
 
-from fluentmodels import exceltools
-from fluentmodels.exceltools import read_excel_to_objects, write_objects_to_csv, read_csv_to_objects
-from fluentmodels.models import BaseDataModel
+from fluentstructs import exceltools
+from fluentstructs.exceltools import read_excel_to_objects, write_objects_to_csv, read_csv_to_objects
+from fluentstructs import BaseDataModel
+
 
 class UnitExcelModel(BaseDataModel):
     unit_group_name: str = Field("", alias="单位组名称")
@@ -21,8 +22,9 @@ def test_load_objects_from_excel():
     print(result)
     print(type(result))
 
-    write_objects_to_csv("unit.csv",result)
-    read_csv_to_objects("unit.csv",UnitExcelModel)
+    write_objects_to_csv("unit.csv", result)
+    read_csv_to_objects("unit.csv", UnitExcelModel)
+
 
 def test_write_excels():
     u = UnitExcelModel()

@@ -9,11 +9,11 @@ from .jsontools import loads
 from dotty_dict import dotty
 
 __all__ = [
-    "get_value_by_expression", "set_value_by_expression", "differ"
+    "get_value", "set_value", "differ"
 ]
 
 
-def get_value_by_expression(target_object: Any, path_exp: str) -> Any | None:
+def get_value(target_object: Any, path_exp: str) -> Any | None:
     """
     get value json/dict/class object
     """
@@ -26,7 +26,10 @@ def get_value_by_expression(target_object: Any, path_exp: str) -> Any | None:
     raise NotImplementedError("not support type " + type(target_object))
 
 
-def set_value_by_expression(json_dict: Union[str, Dict], path_exp: str, to_value: Any) -> Dict:
+def set_value(json_dict: Union[str, Dict], path_exp: str, to_value: Any) -> Dict:
+    """
+    set new value in a dict, return a new dict with new value
+    """
     dict_value = copy.deepcopy(json_dict)
     if isinstance(json_dict, str):
         dict_value = json.loads(dict_value)

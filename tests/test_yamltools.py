@@ -1,4 +1,4 @@
-from fluentmodels import jsontools, yamltools
+from fluentstructs import jsontools, yamltools
 
 
 def test_to_yaml_file():

@@ -1,4 +1,20 @@
-# fluent model 
+# fluent-structs 
+
+- Easy to Handle Structs Data
+- Different Structs Data includes:
+  - [X]JSON
+  - [X]YAML
+  - [X]DICT
+  - []TOML
+  - []DATABASE
+  - [X]EXCEL
+  - []CSV
+
+## Pydantic V2
+1. use bump-pydantic to migrate
+```shell
+poetry run bump-pydantic src/fluentstructs
+```
 
 ## get any value or set any value to json or dict like data 
 
@@ -56,16 +72,17 @@ more_dict = {
 
 ```python
 def test_get_value_by_expression():
-    result = fluentmodels.get_value_by_expression(more_dict,"characters.Lonestar")
+    result = fluentstructs.get_value(more_dict, "characters.Lonestar")
     assert result == {
-            "id": 55923,
-            "role": "renegade",
-            "items": ["space winnebago", "leather jacket"],
-        }
-    
+        "id": 55923,
+        "role": "renegade",
+        "items": ["space winnebago", "leather jacket"],
+    }
+
+
 def test_set_value_by_express_json():
-    result = fluentmodels.set_value_by_expression(more_json_dict,"characters.Lonestar",{})
-    result = fluentmodels.get_value_by_expression(result,"characters.Lonestar")
+    result = fluentstructs.set_value(more_json_dict, "characters.Lonestar", {})
+    result = fluentstructs.get_value(result, "characters.Lonestar")
     assert result == {}
 
 ```

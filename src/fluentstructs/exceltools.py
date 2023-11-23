@@ -11,7 +11,7 @@ from pydantic import BaseModel
 
 __all__ = ["read_excel_to_objects", "write_objects_to_excel", "write_objects_to_csv", "read_csv_to_objects"]
 
-from fluentmodels.models import BaseDataModel
+from fluentstructs.models import BaseDataModel
 
 
 def read_excel_to_objects(

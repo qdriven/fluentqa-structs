@@ -15,7 +15,7 @@
 4. difference between different data 
 """
 
-from .datatools import *
+from .operations import *
 from .dicttools import *
 from .models import *
 from .jsontools import *
