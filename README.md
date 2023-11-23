@@ -2,13 +2,13 @@
 
 - Easy to Handle Structs Data
 - Different Structs Data includes:
-  - [X]JSON
-  - [X]YAML
-  - [X]DICT
-  - []TOML
-  - []DATABASE
-  - [X]EXCEL
-  - []CSV
+  - [X] JSON
+  - [X] YAML
+  - [X] DICT
+  - [] TOML
+  - [] DATABASE
+  - [X] EXCEL
+  - [] CSV
 
 ## Pydantic V2
 1. use bump-pydantic to migrate
