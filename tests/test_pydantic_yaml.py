@@ -1,6 +1,10 @@
 from enum import Enum
-from pydantic import BaseModel, validator
-from pydantic_yaml import parse_yaml_raw_as, to_yaml_str
+
+from pydantic import BaseModel
+from pydantic import validator
+from pydantic_yaml import parse_yaml_raw_as
+from pydantic_yaml import to_yaml_str
+
 
 class MyEnum(str, Enum):
     """A custom enumeration that is YAML-safe."""
@@ -8,10 +12,12 @@ class MyEnum(str, Enum):
     a = "a"
     b = "b"
 
+
 class InnerModel(BaseModel):
     """A normal pydantic model that can be used as an inner class."""
 
     fld: float = 1.0
+
 
 class MyModel(BaseModel):
     """Our custom Pydantic model."""
@@ -25,6 +31,7 @@ class MyModel(BaseModel):
         """You can add your normal pydantic validators, like this one."""
         assert v > 0
         return v
+
 
 m1 = MyModel(x=2, e="b", m=InnerModel(fld=1.5))
 

@@ -4,26 +4,31 @@
 """
 covert yaml to object or object to yaml string or file
 """
-from typing import Any, TypeVar, Type
+from typing import Any
 from typing import Dict
+from typing import Type
+from typing import TypeVar
 from typing import Union
 
 import yaml
-from pydantic_yaml import parse_yaml_file_as, to_yaml_str
 
-from fluentstructs import GenericDataModel, jsontools
+from pydantic_yaml import parse_yaml_file_as
+from pydantic_yaml import to_yaml_str
+
+from fluentstructs import GenericDataModel
+from fluentstructs import jsontools
+
 
 T = TypeVar("T", bound=GenericDataModel)
 
 
 class YamlGenericModel(GenericDataModel):
-
     def to_yaml_file(self, file_path: str):
         to_yaml_file(file_path, self.model_dump(by_alias=True))
 
 
 def load_yaml(model_type: Type[T], file_path: str) -> Any:
-    return parse_yaml_file_as(model_type,file_path)
+    return parse_yaml_file_as(model_type, file_path)
 
 
 def to_yaml_file(file_path: str, data: Union[YamlGenericModel, Dict]):

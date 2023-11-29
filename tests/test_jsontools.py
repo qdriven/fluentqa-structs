@@ -5,8 +5,9 @@ import datetime
 from datetime import datetime
 
 from pydantic import Field
-from fluentstructs.models import BaseDataModel
+
 from fluentstructs import jsontools as jt
+from fluentstructs.models import BaseDataModel
 
 
 def test_load():

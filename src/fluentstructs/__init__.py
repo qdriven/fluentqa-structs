@@ -15,8 +15,8 @@
 4. difference between different data 
 """
 
-from .operations import *
 from .dicttools import *
-from .models import *
 from .jsontools import *
+from .models import *
+from .operations import *
 from .yamltools import *

@@ -29,7 +29,6 @@ build-remove:
 .PHONY: cleanup
 cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove build-remove
 
-
 .PHONY: pre-commit-install
 pre-commit-install:
 	poetry run pre-commit install

@@ -26,7 +26,49 @@ bump-pydantic = "^0.7.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage-badge = "^1.1.0"
+isort = "^5.12.0"
+black = "^23.11.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+# https://github.com/psf/black
+target-version = ["py310","py311","py312"]
+line-length = 88
+color = true
+
+exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | env
+    | venv
+)/
+'''
+
+[tool.isort]
+# https://github.com/timothycrosley/isort/
+py_version = 310
+line_length = 88
+known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
+sections = ["FUTURE", "TYPING", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+include_trailing_comma = true
+profile = "black"
+multi_line_output = 3
+indent = 4
+color_output = true
+force_single_line = true
+combine_as_imports = true
+lines_between_types = 1
+lines_after_imports = 2
+src_paths = ["src", "tests"]
+extend_skip = ["setup.py"]

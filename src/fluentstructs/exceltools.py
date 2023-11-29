@@ -1,6 +1,9 @@
 #!/usr/bin/env python
+from typing import Any
+from typing import List
+from typing import Type
+
 import csv
-from typing import Any, List, Type
 
 from pathlib import Path
 
@@ -9,17 +12,23 @@ import pyexcel
 from openpyxl import load_workbook
 from pydantic import BaseModel
 
-__all__ = ["read_excel_to_objects", "write_objects_to_excel", "write_objects_to_csv", "read_csv_to_objects"]
+
+__all__ = [
+    "read_excel_to_objects",
+    "write_objects_to_excel",
+    "write_objects_to_csv",
+    "read_csv_to_objects",
+]
 
 from fluentstructs.models import BaseDataModel
 
 
 def read_excel_to_objects(
-        excel_path: str | Path,
-        model: type[BaseModel] = BaseModel,
-        sheet_index: int = 0,
-        sheet_name: str = None,
-        ignore_validate_errors: bool = False,
+    excel_path: str | Path,
+    model: type[BaseModel] = BaseModel,
+    sheet_index: int = 0,
+    sheet_name: str = None,
+    ignore_validate_errors: bool = False,
 ) -> list[Any]:
     wb = load_workbook(excel_path)
     if sheet_name is not None:
@@ -40,7 +49,9 @@ def read_excel_to_objects(
     return objects
 
 
-def write_objects_to_excel(objects: list[BaseModel | dict | BaseDataModel], excel_path: str):
+def write_objects_to_excel(
+    objects: list[BaseModel | dict | BaseDataModel], excel_path: str
+):
     """
     write objects to excel or csv
     """
@@ -54,9 +65,7 @@ def write_objects_to_excel(objects: list[BaseModel | dict | BaseDataModel], exce
         raise NotImplementedError("Not Support Model type")
 
 
-def write_objects_to_csv(csv_path: str,
-                         data: List[BaseModel]
-                         ):
+def write_objects_to_csv(csv_path: str, data: List[BaseModel]):
     out_csv = Path(csv_path)
 
     fields = list(data[0].__fields__)
@@ -66,9 +75,11 @@ def write_objects_to_csv(csv_path: str,
         [writer.writerow(x.dict()) for x in data]
 
 
-def read_csv_to_objects(csv_path: str, model: Type[BaseModel], ignore_validate_errors=False):
-    with open(csv_path, newline='') as f:
-        reader = csv.reader(f, delimiter=':', quoting=csv.QUOTE_NONE)
+def read_csv_to_objects(
+    csv_path: str, model: Type[BaseModel], ignore_validate_errors=False
+):
+    with open(csv_path, newline="") as f:
+        reader = csv.reader(f, delimiter=":", quoting=csv.QUOTE_NONE)
         index = 0
         headers = []
         objects = []
@@ -77,10 +88,10 @@ def read_csv_to_objects(csv_path: str, model: Type[BaseModel], ignore_validate_e
                 headers = row[0].split(",")
             else:
                 try:
-                    item ={}
-                    for key,v in zip(headers,row[0].split(",")):
-                        if len(v)>0:
-                            item[key]=v
+                    item = {}
+                    for key, v in zip(headers, row[0].split(",")):
+                        if len(v) > 0:
+                            item[key] = v
                     objects.append(model.parse_obj(item))
                 except BaseException as e:
                     if ignore_validate_errors:

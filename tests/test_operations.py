@@ -1,5 +1,7 @@
 import fluentstructs
-from data_constants import more_dict, more_json_dict
+
+from data_constants import more_dict
+from data_constants import more_json_dict
 
 
 def test_get_value_by_expression():

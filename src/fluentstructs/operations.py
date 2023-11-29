@@ -1,16 +1,21 @@
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Union
+
 import copy
 import json
-from typing import Dict, Any, Union, List
+
 import jmespath
+
+from dotty_dict import dotty
 from pydantic.main import BaseModel
 
-from .models import BaseDataModel
 from .jsontools import loads
-from dotty_dict import dotty
+from .models import BaseDataModel
 
-__all__ = [
-    "get_value", "set_value", "differ"
-]
+
+__all__ = ["get_value", "set_value", "differ"]
 
 
 def get_value(target_object: Any, path_exp: str) -> Any | None:

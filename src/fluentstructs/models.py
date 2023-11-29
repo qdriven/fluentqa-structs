@@ -6,7 +6,9 @@ import re
 import inflection
 import pydantic
 
-from pydantic import ConfigDict, BaseModel
+from pydantic import BaseModel
+from pydantic import ConfigDict
+
 
 T = TypeVar("T")  # Declare type variable
 
@@ -20,7 +22,13 @@ class CamelModel(BaseModel):
     def __init__(self, **kwargs):
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
         super().__init__(**kwargs)
-    model_config = ConfigDict(arbitrary_types_allowed=True, alias_generator=to_camel, populate_by_name=True, use_enum_values=True)
+
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        alias_generator=to_camel,
+        populate_by_name=True,
+        use_enum_values=True,
+    )
 
     def to_json(self, by_alias=True):
         return self.json(by_alias=by_alias, exclude_none=True)
@@ -37,7 +45,9 @@ class BaseDataModel(GenericDataModel):
     pass
 
 
-def parse_as(json_or_dict: str | dict, to_type: Union[GenericDataModel, BaseDataModel, BaseModel]):
+def parse_as(
+    json_or_dict: str | dict, to_type: Union[GenericDataModel, BaseDataModel, BaseModel]
+):
     if isinstance(json_or_dict, str):
         return pydantic.parse_raw_as(to_type, json_or_dict)
     else:
