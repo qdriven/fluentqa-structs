@@ -38,6 +38,5 @@ jobs:
         run: poetry install
       - name: Run test and code styles
         run: |
-          make formatting
           make test
           make cleanup
