@@ -1,7 +1,6 @@
 # fluent-structs 
 
-[![Build status](https://github.com/qdriven/fluentqa-structs/workflows/build/badge.svg)](https://github.com/qdriven/fluentqa-structs/actions/workflows/build.yml/badge.svg)
-![Coverage Report](assets/images/coverage.svg)
+[![Python application](https://github.com/qdriven/fluentqa-structs/actions/workflows/build.yml/badge.svg)](https://github.com/qdriven/fluentqa-structs/actions/workflows/build.yml)![Coverage Report](assets/images/coverage.svg)
 
 - Easy to Handle Structs Data
 - Different Structs Data includes:
