@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fluent-structs"
+name = "fluentstructs"
 version = "0.1.0"
 description = ""
 authors = ["fluentqa <KUZz8@example.com>"]
