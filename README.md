@@ -2,6 +2,7 @@
 
 [![Python application](https://github.com/qdriven/fluentqa-structs/actions/workflows/build.yml/badge.svg)](https://github.com/qdriven/fluentqa-structs/actions/workflows/build.yml)![Coverage Report](assets/images/coverage.svg)
 
+- [fluent-structs](https://github.com/qdriven/fluentqa-structs.git)
 - Easy to Handle Structs Data
 - Different Structs Data includes:
   - [X] JSON
