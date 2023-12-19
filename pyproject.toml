@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fluentstructs"
 version = "0.1.0"
-description = ""
+description = "fluent structs is a tools to access,transfer different data type"
 authors = ["fluentqa <KUZz8@example.com>"]
 packages =[
     {from="src", include="fluentstructs"}
