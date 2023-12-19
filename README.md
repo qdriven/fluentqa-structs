@@ -71,7 +71,7 @@ more_dict = {
     }
 }
 ```
-- get or set value
+- get or set value by json path like expressions
 
 ```python
 
@@ -91,10 +91,37 @@ def test_set_value_by_express_json():
 
 ```
 
+- differ: compare to different json
+
+```python
+def test_differ():
+    result = fluentstructs.differ(more_dict, more_json_dict)
+    assert len(result) > 1
+```
+
 ## Pydantic Model Enhance
 
 - GenericModel: support camelCase and alias field
 - YamlGenericModel: support Pydantic to Yaml
+
+```python
+    ## Model
+    m1 = MyModel(x=2, e="b", m=InnerModel(fld=1.5))
+
+    # This dumps to YAML and JSON respectively
+    yml = to_yaml_str(m1)
+    jsn = m1.model_dump_json()
+
+    # This parses YAML as the MyModel type
+    m2 = parse_yaml_raw_as(MyModel, yml)
+    assert m1 == m2
+
+    # JSON is also valid YAML
+    m3 = parse_yaml_raw_as(MyModel, jsn)
+    assert m1 == m3
+
+```
+
 
 ## Excel Read and Write Tools
 
