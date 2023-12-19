@@ -7,7 +7,7 @@ packages =[
     {from="src", include="fluentstructs"}
 ]
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<=3.12"
 jmespath = "^1.0.1"
 deepdiff = "^6.3.0"
 pyexcel = "^0.7.0"
