@@ -4,8 +4,8 @@ from datetime import datetime
 
 from pydantic import Field
 
-from fluentstructs import jsontools as jt
-from fluentstructs.models import BaseDataModel
+from qpystructs import jsontools as jt
+from qpystructs.models import BaseDataModel
 
 
 def test_load():

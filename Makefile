@@ -51,5 +51,5 @@ lint: test check-codestyle codestyle
 
 .PHONY: test
 test:
-	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=fluentstructs tests/
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=qpystructs tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f

@@ -1,11 +1,11 @@
-import fluentstructs
+import qpystructs
 
 from data_constants import more_dict
 from data_constants import more_json_dict
 
 
 def test_get_value_by_expression():
-    result = fluentstructs.get_value(more_dict, "characters.Lonestar")
+    result = qpystructs.get_value(more_dict, "characters.Lonestar")
     assert result == {
         "id": 55923,
         "role": "renegade",
@@ -14,17 +14,17 @@ def test_get_value_by_expression():
 
 
 def test_set_value_by_express():
-    new_dict = fluentstructs.set_value(more_dict, "characters.Lonestar", {})
-    result = fluentstructs.get_value(new_dict, "characters.Lonestar")
+    new_dict = qpystructs.set_value(more_dict, "characters.Lonestar", {})
+    result = qpystructs.get_value(new_dict, "characters.Lonestar")
     assert result == {}
 
 
 def test_set_value_by_express_json():
-    result = fluentstructs.set_value(more_json_dict, "characters.Lonestar", {})
-    result = fluentstructs.get_value(result, "characters.Lonestar")
+    result = qpystructs.set_value(more_json_dict, "characters.Lonestar", {})
+    result = qpystructs.get_value(result, "characters.Lonestar")
     assert result == {}
 
 
 def test_differ():
-    result = fluentstructs.differ(more_dict, more_json_dict)
+    result = qpystructs.differ(more_dict, more_json_dict)
     assert len(result) > 1

@@ -1,13 +1,15 @@
 #!/usr/bin/env python
-from typing import Any, Dict, List
+from typing import Any
+from typing import Dict
+from typing import List
 
-__all__ = ["deep_update", "merge_dicts", "pick_value"
-    , "pick_by_keys"]
+
+__all__ = ["deep_update", "merge_dicts", "pick_value", "pick_by_keys"]
 
 
 def deep_update(base_dict: dict, update_dict: dict):
     """
-        Works like update, but recursively on each level
+    Works like update, but recursively on each level
     """
     res = base_dict.copy()
     for key, val in update_dict.items():
@@ -75,5 +77,3 @@ def map_dict_keys(func, obj: Dict):
         else:
             new_obj[func_key] = value
     return new_obj
-
-

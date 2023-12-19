@@ -34,9 +34,3 @@ def get_ordered_json(obj):
         return sorted(get_ordered_json(x) for x in obj)
     else:
         return obj
-
-
-
-
-
-

@@ -20,7 +20,7 @@ __all__ = [
     "read_csv_to_objects",
 ]
 
-from fluentstructs.models import BaseDataModel
+from qpystructs.models import BaseDataModel
 
 
 def read_excel_to_objects(

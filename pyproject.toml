@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "fluentstructs"
+name = "qpystructs"
 version = "0.1.0"
 description = "fluent structs is a tools to access,transfer different data type"
 authors = ["fluentqa <KUZz8@example.com>"]
 packages =[
-    {from="src", include="fluentstructs"}
+    {from="src", include="qpystructs"}
 ]
 [tool.poetry.dependencies]
 python = ">=3.10,<=3.12"

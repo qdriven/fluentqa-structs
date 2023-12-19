@@ -1,4 +1,5 @@
-from fluentstructs import jsontools, yamltools
+from qpystructs import jsontools
+from qpystructs import yamltools
 
 
 def test_to_yaml_file():

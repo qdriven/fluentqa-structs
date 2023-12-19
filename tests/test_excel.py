@@ -3,11 +3,11 @@ from typing import Optional
 
 from pydantic import Field
 
-from fluentstructs import BaseDataModel
-from fluentstructs import exceltools
-from fluentstructs.exceltools import read_csv_to_objects
-from fluentstructs.exceltools import read_excel_to_objects
-from fluentstructs.exceltools import write_objects_to_csv
+from qpystructs import BaseDataModel
+from qpystructs import exceltools
+from qpystructs.exceltools import read_csv_to_objects
+from qpystructs.exceltools import read_excel_to_objects
+from qpystructs.exceltools import write_objects_to_csv
 
 
 class UnitExcelModel(BaseDataModel):

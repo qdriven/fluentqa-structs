@@ -15,7 +15,7 @@ import yaml
 from pydantic_yaml import parse_yaml_file_as
 from pydantic_yaml import to_yaml_str
 
-from fluentstructs import GenericDataModel
+from qpystructs import GenericDataModel
 
 
 T = TypeVar("T", bound=GenericDataModel)
