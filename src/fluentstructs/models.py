@@ -51,11 +51,11 @@ def parse_as(
     if isinstance(json_or_dict, str):
         return pydantic.parse_raw_as(to_type, json_or_dict)
     else:
-        return pydantic.parse_obj_as(to_type, json_or_dict)
+        return pydantic.TypeAdapter.validate_python(to_type, json_or_dict)
 
 
 def to_json(obj: Union[GenericDataModel, BaseDataModel, BaseModel]):
     if isinstance(obj, GenericDataModel) or isinstance(obj, BaseDataModel):
         return obj.to_json()
     else:
-        return obj.json(by_alias=True, exclude_none=True)
+        return obj.model_dump_json(by_alias=True, exclude_none=True)

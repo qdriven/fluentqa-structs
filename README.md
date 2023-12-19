@@ -7,13 +7,14 @@
   - [X] JSON
   - [X] YAML
   - [X] DICT
+  - [X] EXCEL
   - [] TOML
   - [] DATABASE
-  - [X] EXCEL
   - [] CSV
 
 ## Pydantic V2
 1. use bump-pydantic to migrate
+
 ```shell
 poetry run bump-pydantic src/fluentstructs
 ```
@@ -73,6 +74,7 @@ more_dict = {
 - get or set value
 
 ```python
+
 def test_get_value_by_expression():
     result = fluentstructs.get_value(more_dict, "characters.Lonestar")
     assert result == {
@@ -124,7 +126,20 @@ def test_write_excels():
     write_objects_to_csv("unit.csv",result)
     read_csv_to_objects("unit.csv",UnitExcelModel)
 ```
+
+## JSON Yaml 转换
+
+```python
+
+from fluentstructs import jsontools, yamltools
+
+
+def test_to_yaml_file():
+    data = jsontools.load("./example.json")
+    yamltools.to_yaml_file("./example.yaml", data)
+
+```
 ## To Do:
 
-- [] DataFrame
 - [X] CSV
+- [] DataFrame

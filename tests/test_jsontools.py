@@ -1,5 +1,3 @@
-from typing import Optional
-
 import datetime
 
 from datetime import datetime
@@ -53,6 +51,6 @@ def test_model():
     json_str = """
     {"id": "test", "name": "test", "startTime": "2022-10-24 16:04:47.657599+08:00"}
     """
-    result_1 = DataTransformRule.parse_raw(result.to_json())
+    result_1 = DataTransformRule.model_validate_json(result.to_json())
     print(result_1.to_json())
     print(result_1.start_time.astimezone())
